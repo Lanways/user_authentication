@@ -40,7 +40,7 @@ app.post('/welcome', (req, res) => {
       if (data && data.email === email && data.password === password) {
         res.render('welcome', { name: data.firstName })
       } else {
-        res.render('error')
+        res.render('index', {errorMessage: 'Invalid email or password'})
       }
     })
     .catch((error) => console.log(error))

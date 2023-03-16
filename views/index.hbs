@@ -1,12 +1,25 @@
-<h2>Account Login</h2>
+<div class="d-flex justify-content-center mt-5">
+  <h2>Account Login</h2>
+</div>
+
 <form action="/welcome" method="POST">
   <div>
-    <div>
-      <input type="text" placeholder="Email" name="email" id="email">
+    <div class="d-flex justify-content-center mt-2">
+      <input type="email" placeholder="Email" name="email" id="email" style="width: 300px; height:35px" required>
     </div>
-    <div>
-      <input type="text" placeholder="Password" name="password" id="password">
+    <div class="d-flex justify-content-center mt-3">
+      <input type="password" placeholder="Password" name="password" id="password" style="width: 300px; height:35px"
+        required>
     </div>
   </div>
-  <button>sign in</button>
+  <div class="d-flex justify-content-center mt-2">
+
+    <button class="btn btn-primary">sign in</button>
+  </div>
+
 </form>
+{{#if errorMessage}}
+<div class="d-flex justify-content-center">
+  <p style="color: red;">invalid account and password</p>
+</div>
+{{/if}}
