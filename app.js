@@ -3,7 +3,7 @@ const app = express()
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const User_Account = require('./models/user_account')
-
+const bodyParser = require('body-parser')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -24,13 +24,26 @@ db.once('open', () => {
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+app.use(bodyParser.urlencoded({ extended: true }))
+
 
 app.get('/', (req, res) => {
   res.render('index')
 })
 
 app.post('/welcome', (req, res) => {
-  res.render('welcome')
+  console.log('req.body', req.body)
+  const { email, password } = req.body
+  User_Account.findOne({ email })
+    .lean()
+    .then(data => {
+      if (data && data.email === email && data.password === password) {
+        res.render('welcome', { name: data.firstName })
+      } else {
+        res.render('error')
+      }
+    })
+    .catch((error) => console.log(error))
 })
 
 app.listen(3000, () => {
