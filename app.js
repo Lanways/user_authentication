@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const User_Account = require('./models/user_account')
 
-if (process.env.NODE.ENW !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
