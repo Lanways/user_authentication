@@ -46,6 +46,10 @@ app.post('/welcome', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+app.get('/shop', (req, res) => {
+  res.render('shop')
+})
+
 app.listen(3000, () => {
   console.log('Express running on localhost:3000')
 })
